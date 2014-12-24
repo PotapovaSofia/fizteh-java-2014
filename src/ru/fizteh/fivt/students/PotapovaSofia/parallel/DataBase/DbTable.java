@@ -195,7 +195,7 @@ public class DbTable implements Table {
     @Override
     public int commit() throws RuntimeException {
         lock.writeLock().lock();
-        try{
+        try {
             int commitCount = diff.get().size();
             for (Map.Entry<String, ValueWrapper> f : diff.get().entrySet()) {
                 ValueWrapper valueWrapper = f.getValue();
@@ -347,7 +347,8 @@ public class DbTable implements Table {
                     for (File file : directoryFiles) {
                         k = file.getName().indexOf('.');
                         if ((k < 0) || !(file.getName().endsWith(".dat"))) {
-                            throw new IllegalArgumentException("Table subdirectory's files doesn't have appropriate name");
+                            throw new IllegalArgumentException("Table subdirectory's files"
+                                    + "doesn't have appropriate name");
                         }
                         if (file.length() == 0) {
                             throw new IllegalArgumentException("Table file '" + file.toString() + "' is empty");
